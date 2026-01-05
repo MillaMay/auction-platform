@@ -9,3 +9,8 @@
 /vendor/
 ###< symfony/framework-bundle ###
 .idea/
+
+# Symfony secrets
+/config/secrets/
+.env.local
+.env.*.local
