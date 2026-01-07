@@ -1,0 +1,9 @@
+.git
+node_modules
+var
+.docker
+Dockerfile*
+docker-compose*
+.env*
+config/secrets
+!public/build
