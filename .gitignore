@@ -15,3 +15,5 @@
 .env.local
 .env.*.local
 .env
+
+/config/jwt/*.pem
