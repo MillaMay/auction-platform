@@ -21,7 +21,8 @@ security:
             jwt: ~
 
         # Админка (EasyAdmin)
-        main:
+        admin:
+            pattern: ^/admin
             lazy: true
             provider: app_user_provider
             form_login:
@@ -31,6 +32,19 @@ security:
             logout:
                 path: /admin/logout
                 target: /admin/login
+
+        # Web firewall (для обычных пользователей)
+        web:
+            pattern: ^/
+            lazy: true
+            provider: app_user_provider
+            form_login:
+                login_path: /login
+                check_path: /login
+                default_target_path: /
+            logout:
+                path: /logout
+                target: /login
 
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }

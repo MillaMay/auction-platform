@@ -14,6 +14,12 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig');
     }
 
+    #[Route('/logout', name: 'app_logout')]
+    public function logout(): void
+    {
+        // Symfony перехватывает сам
+    }
+
     #[Route('/register', name: 'app_register')]
     public function register(): Response
     {

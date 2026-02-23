@@ -27,3 +27,15 @@ yarn-debug.log*
 yarn-error.log*
 *~
 ###< Node.js & Frontend ###
+
+###> PHPUnit & Testing ###
+/.phpunit.cache/
+/coverage/
+/coverage.clover
+phpunit.xml
+###< PHPUnit & Testing ###
+
+###> PHP CS Fixer & Static Analysis ###
+/.php-cs-fixer.cache
+/.phpstan.cache/
+###< PHP CS Fixer & Static Analysis ###

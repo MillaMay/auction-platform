@@ -70,7 +70,12 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "test": "phpunit",
+        "tests:coverage": "phpunit --coverage-clover=coverage.clover",
+        "phpstan:analyze": "phpstan analyse src --level=7",
+        "cs:fix": "php-cs-fixer fix",
+        "cs:check": "php-cs-fixer fix --dry-run --diff"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -82,6 +87,11 @@
         }
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.65"
+        "symfony/maker-bundle": "^1.65",
+        "phpunit/phpunit": "^11",
+        "phpstan/phpstan": "^1.12",
+        "phpstan/phpstan-symfony": "^1.5",
+        "vimeo/psalm": "^5",
+        "friendsofphp/php-cs-fixer": "^3.60"
     }
 }
