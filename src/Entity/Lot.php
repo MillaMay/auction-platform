@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: LotRepository::class)]
 class Lot
 {
+    /**
+     * @phpstan-ignore property.onlyWritten
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
