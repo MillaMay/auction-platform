@@ -89,9 +89,8 @@
     "require-dev": {
         "symfony/maker-bundle": "^1.65",
         "phpunit/phpunit": "^11",
-        "phpstan/phpstan": "^1.12",
-        "phpstan/phpstan-symfony": "^1.5",
-        "vimeo/psalm": "^5",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-symfony": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.60"
     }
 }
