@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Bid
 {
     /**
-     * @phpstan-ignore property.onlyWritten
+     * @phpstan-ignore-next-line
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]

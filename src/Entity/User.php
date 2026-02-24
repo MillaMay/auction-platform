@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
-     * @phpstan-ignore property.onlyWritten
+     * @phpstan-ignore-next-line
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
