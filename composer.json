@@ -73,7 +73,7 @@
         ],
         "test": "phpunit",
         "tests:coverage": "phpunit --coverage-clover=coverage.clover",
-        "phpstan:analyze": "phpstan analyse src --level=7",
+        "phpstan:analyze": "phpstan analyse",
         "cs:fix": "php-cs-fixer fix",
         "cs:check": "php-cs-fixer fix --dry-run --diff"
     },
