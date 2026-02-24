@@ -58,6 +58,13 @@ jobs:
           key: composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: composer-
 
+      - name: Create .env for Symfony
+        run: |
+          cp .env.test.local .env
+          echo "APP_SECRET=${{ secrets.APP_SECRET }}" >> .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "REDIS_URL=${{ secrets.REDIS_URL }}" >> .env
+
       - name: Install dependencies
         run: |
           composer install --no-interaction --prefer-dist --optimize-autoloader
