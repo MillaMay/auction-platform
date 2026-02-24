@@ -1,6 +1,0 @@
-parameters:
-    level: 7
-    paths:
-        - src
-    ignoreErrors:
-        - '#Property App\\Entity\\(User|Lot|Bid)::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
