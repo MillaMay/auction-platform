@@ -21,7 +21,7 @@ class CreateAdminCommand extends Command
 {
     public function __construct(
         private EntityManagerInterface $em,
-        private UserPasswordHasherInterface $passwordHasher
+        private UserPasswordHasherInterface $passwordHasher,
     ) {
         parent::__construct();
     }
@@ -39,19 +39,22 @@ class CreateAdminCommand extends Command
         // Проверка на пустой email
         if (empty($email)) {
             $io->error('Email не может быть пустым!');
+
             return Command::FAILURE;
         }
 
         // Валидация формата email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $io->error('Неверный формат email!');
+
             return Command::FAILURE;
         }
 
         // Проверка существующего пользователя
         $existingUser = $this->em->getRepository(User::class)->findOneBy(['email' => $email]);
         if ($existingUser) {
-            $io->error('Пользователь с таким email уже существует: ' . $email);
+            $io->error('Пользователь с таким email уже существует: '.$email);
+
             return Command::FAILURE;
         }
 
@@ -64,12 +67,14 @@ class CreateAdminCommand extends Command
         // Проверка на пустой пароль
         if (empty($password)) {
             $io->error('Пароль не может быть пустым!');
+
             return Command::FAILURE;
         }
 
         // Проверка минимальной длины пароля
         if (strlen($password) < 6) {
             $io->error('Пароль должен быть не менее 6 символов!');
+
             return Command::FAILURE;
         }
 
@@ -82,7 +87,7 @@ class CreateAdminCommand extends Command
         $this->em->persist($user);
         $this->em->flush();
 
-        $io->success('Администратор создан: ' . $email);
+        $io->success('Администратор создан: '.$email);
 
         return Command::SUCCESS;
     }

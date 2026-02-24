@@ -23,7 +23,7 @@ class RegistrationController extends AbstractController
         UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface $entityManager,
         JWTTokenManagerInterface $jwtManager,
-        ValidatorInterface $validator
+        ValidatorInterface $validator,
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
@@ -33,21 +33,21 @@ class RegistrationController extends AbstractController
         // Валидация входных данных
         if (!$email || !$password) {
             return new JsonResponse([
-                'error' => 'Email and password are required'
+                'error' => 'Email and password are required',
             ], Response::HTTP_BAD_REQUEST);
         }
 
         // Проверка формата email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return new JsonResponse([
-                'error' => 'Invalid email format'
+                'error' => 'Invalid email format',
             ], Response::HTTP_BAD_REQUEST);
         }
 
         // Проверка длины пароля
         if (strlen($password) < 6) {
             return new JsonResponse([
-                'error' => 'Password must be at least 6 characters long'
+                'error' => 'Password must be at least 6 characters long',
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -55,7 +55,7 @@ class RegistrationController extends AbstractController
         $existingUser = $userRepository->findOneBy(['email' => $email]);
         if ($existingUser) {
             return new JsonResponse([
-                'error' => 'User with this email already exists'
+                'error' => 'User with this email already exists',
             ], Response::HTTP_CONFLICT);
         }
 
@@ -75,9 +75,10 @@ class RegistrationController extends AbstractController
             foreach ($errors as $error) {
                 $errorMessages[] = $error->getMessage();
             }
+
             return new JsonResponse([
                 'error' => 'Validation failed',
-                'details' => $errorMessages
+                'details' => $errorMessages,
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -94,8 +95,8 @@ class RegistrationController extends AbstractController
             'user' => [
                 'id' => $user->getId(),
                 'email' => $user->getEmail(),
-                'roles' => $user->getRoles()
-            ]
+                'roles' => $user->getRoles(),
+            ],
         ], Response::HTTP_CREATED);
     }
 }

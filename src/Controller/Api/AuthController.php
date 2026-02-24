@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\Repository\UserRepository;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -9,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\UserRepository;
 
 class AuthController extends AbstractController
 {
@@ -18,7 +18,7 @@ class AuthController extends AbstractController
         Request $request,
         UserRepository $userRepository,
         UserPasswordHasherInterface $passwordHasher,
-        JWTTokenManagerInterface $jwtManager
+        JWTTokenManagerInterface $jwtManager,
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
@@ -27,7 +27,7 @@ class AuthController extends AbstractController
 
         if (!$email || !$password) {
             return new JsonResponse([
-                'error' => 'Missing credentials'
+                'error' => 'Missing credentials',
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -35,7 +35,7 @@ class AuthController extends AbstractController
 
         if (!$user || !$passwordHasher->isPasswordValid($user, $password)) {
             return new JsonResponse([
-                'error' => 'Invalid credentials'
+                'error' => 'Invalid credentials',
             ], Response::HTTP_UNAUTHORIZED);
         }
 
@@ -46,8 +46,8 @@ class AuthController extends AbstractController
             'user' => [
                 'id' => $user->getId(),
                 'email' => $user->getEmail(),
-                'roles' => $user->getRoles()
-            ]
+                'roles' => $user->getRoles(),
+            ],
         ]);
     }
 }

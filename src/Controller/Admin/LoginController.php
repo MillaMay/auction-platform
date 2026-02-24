@@ -21,7 +21,7 @@ class LoginController extends AbstractController
         return $this->render('admin/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            ]);
+        ]);
     }
 
     #[Route('/admin/logout', name: 'admin_logout')]
