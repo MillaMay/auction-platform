@@ -69,6 +69,13 @@ jobs:
         run: |
           composer install --no-interaction --prefer-dist --optimize-autoloader
 
+      - name: Wait for Postgres
+        run: |
+          until pg_isready -h postgres -p 5432 -U user; do
+            echo "Waiting for Postgres..."
+            sleep 2
+          done
+
       - name: Run migrations
         run: |
           php bin/console doctrine:database:create --env=test --no-interaction
